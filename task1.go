@@ -13,26 +13,24 @@ func alg1() {
 		&numSlice[3],
 	)
 	res := true
-	upType := 0 // 1 по возрастанию, 2 по убыанию
+	const (
+		T0 = iota // не имеет типа
+		T1        // возрастание
+		T2        // убывание
+	)
+	upType := T0
 	prev := numSlice[0]
 	for i := 1; i < 4; i++ {
 		if upType == 0 {
 			if prev < numSlice[i] {
-				upType = 1
+				upType = T1
 			} else if prev > numSlice[i] {
-				upType = 2
+				upType = T2
 			}
 		} else {
-			if upType == 1 {
-				if prev > numSlice[i] {
-					res = false
-					break
-				}
-			} else {
-				if prev < numSlice[i] {
-					res = false
-					break
-				}
+			if (upType == T1 && prev > numSlice[i]) || (upType == T2 && prev < numSlice[i]) {
+				res = false
+				break
 			}
 		}
 		prev = numSlice[i]
