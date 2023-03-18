@@ -40,5 +40,4 @@ OuterLoop:
 	} else {
 		fmt.Println(-1)
 	}
-
 }
